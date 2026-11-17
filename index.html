@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Lens Studio | Wedding, Events, Gallery & Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d4af37; /* Royal Gold */
+            --dark: #121212;
+            --card-bg: #1e1e1e;
+            --text: #f5f5f5;
+            --muted: #aaaaaa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navbar & Logo */
+        header {
+            background: rgba(18, 18, 18, 0.95);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--primary);
+            color: #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-text span:first-child {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .logo-text span:last-child {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #ddd;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #000;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #f0c94d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Section Common */
+        section {
+            padding: 70px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--muted);
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #2c2c2c;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        /* Photo Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 260px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px 15px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .gallery-overlay span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            border: 2px solid var(--primary);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #fff;
+            font-size: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            color: var(--text);
+            border: 1px solid #444;
+            padding: 8px 18px;
+            margin: 5px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Packages & Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--primary);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: var(--primary);
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .price-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .category-tag {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .price span {
+            font-size: 0.9rem;
+            color: var(--muted);
+            font-weight: 400;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 0.92rem;
+            color: #ddd;
+        }
+
+        .features-list li::before {
+            content: "✓ ";
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* Booking Section */
+        .booking-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: #ddd;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #444;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 30px 5%;
+            border-top: 1px solid #222;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.1rem; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation with Custom Logo -->
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon">📷</div>
+            <div class="logo-text">
+                <span>ROYAL LENS</span>
+                <span>Photography & Films</span>
+            </div>
+        </a>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#gallery">Portfolio</a>
+            <a href="#packages">Packages & Rates</a>
+            <a href="#booking">Book Now</a>
+        </nav>
+        <a href="#booking" class="btn" style="padding: 8px 18px; font-size: 0.85rem;">Book Event</a>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Capturing Your <span>Best Moments</span> Forever</h1>
+        <p>Wedding • Pre-Wedding • Birthday • Annaprashan • Cinematic Video Editing • Professional Photo Retouching & Luxury Album Design</p>
+        <div class="hero-btns">
+            <a href="#packages" class="btn">View Packages & Rates</a>
+            <a href="#gallery" class="btn btn-outline">See Our Work</a>
+        </div>
+    </section>
+
+    <!-- All Services -->
+    <section id="services">
+        <div class="section-title">
+            <h2>Our Photography & Editing Services</h2>
+            <p>Har occasion aur post-production ke liye complete solution</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>💍 Wedding & Pre-Wedding</h3>
+                <p>Traditional photography, candid shots, cinematic wedding films, drone shoot aur romantic pre-wedding locations.</p>
+            </div>
+            <div class="service-card">
+                <h3>🎂 Birthday & Annaprashan</h3>
+                <p>Kids aur family ke special moments ko natural aur vibrant style mein capture karna, full event coverage ke saath.</p>
+            </div>
+            <div class="service-card">
+                <h3>🎬 Photo & Video Editing</h3>
+                <p>High-end skin retouching, color grading, wedding highlights, reels, aur 4K cinematic video editing service.</p>
+            </div>
+            <div class="service-card">
+                <h3>📖 Custom Album Design</h3>
+                <p>Karizma aur Canvera style luxury wedding & event photo albums ka modern layout design aur printing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" style="background: #161616;">
+        <div class="section-title">
+            <h2>Our Work Gallery</h2>
+            <p>Photo par click karke fullscreen quality dekhein</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterGallery('all', this)">All Work</button>
+            <button class="filter-btn" onclick="filterGallery('wedding', this)">Wedding & Pre-Wedding</button>
+            <button class="filter-btn" onclick="filterGallery('kids', this)">Birthday & Annaprashan</button>
+            <button class="filter-btn" onclick="filterGallery('album', this)">Album & Retouching</button>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Photo 1 -->
+            <div class="gallery-item" data-gcat="wedding" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80" alt="Wedding Photography">
+                <div class="gallery-overlay">
+                    <span>Royal Indian Wedding</span>
+                </div>
+            </div>
+
+            <!-- Photo 2 -->
+            <div class="gallery-item" data-gcat="wedding" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Pre-Wedding Shoot">
+                <div class="gallery-overlay">
+                    <span>Cinematic Pre-Wedding</span>
+                </div>
+            </div>
+
+            <!-- Photo 3 -->
+            <div class="gallery-item" data-gcat="kids" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=800&q=80" alt="Birthday Celebration">
+                <div class="gallery-overlay">
+                    <span>Birthday Celebration</span>
+                </div>
+            </div>
+
+            <!-- Photo 4 -->
+            <div class="gallery-item" data-gcat="kids" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&fit=crop&w=800&q=80" alt="Annaprashan Baby Shoot">
+                <div class="gallery-overlay">
+                    <span>Annaprashan & Baby Portrait</span>
+                </div>
+            </div>
+
+            <!-- Photo 5 -->
+            <div class="gallery-item" data-gcat="album" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1544376798-89aa6b82c6cd?auto=format&fit=crop&w=800&q=80" alt="Luxury Wedding Album">
+                <div class="gallery-overlay">
+                    <span>Luxury Karizma Album Design</span>
+                </div>
+            </div>
+
+            <!-- Photo 6 -->
+            <div class="gallery-item" data-gcat="album" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="Color Grading & Video Editing">
+                <div class="gallery-overlay">
+                    <span>4K Video Editing & Color Grading</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Popup -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightboxImg" src="" alt="Preview">
+    </div>
+
+    <!-- Packages & Pricing -->
+    <section id="packages">
+        <div class="section-title">
+            <h2>Packages & Rate Card</h2>
+            <p>Apne event ya editing requirement ke hisaab se best package chunein</p>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterPackages('all', this)">All Packages</button>
+            <button class="filter-btn" onclick="filterPackages('wedding', this)">Wedding & Pre-Wedding</button>
+            <button class="filter-btn" onclick="filterPackages('events', this)">Birthday & Annaprashan</button>
+            <button class="filter-btn" onclick="filterPackages('editing', this)">Editing & Album</button>
+        </div>
+
+        <div class="pricing-grid" id="pricingGrid">
+            <!-- Package 1 -->
+            <div class="price-card" data-category="events">
+                <div>
+                    <span class="category-tag">Birthday / Annaprashan</span>
+                    <h3>Basic Event Package</h3>
+                    <div class="price">₹8,500 <span>/ event</span></div>
+                    <ul class="features-list">
+                        <li>1 Traditional Photographer (Up to 5 Hours)</li>
+                        <li>Unlimited Raw + 150 Edited Photos</li>
+                        <li>Full Event Traditional Video</li>
+                        <li>Online Google Drive Delivery</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Basic Event Package (₹8,500)')">Select & Book</button>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="price-card popular" data-category="wedding">
+                <div class="badge">MOST POPULAR</div>
+                <div>
+                    <span class="category-tag">Complete Wedding</span>
+                    <h3>Royal Wedding Combo</h3>
+                    <div class="price">₹45,000 <span>/ full wedding</span></div>
+                    <ul class="features-list">
+                        <li>Candid + Traditional Photography</li>
+                        <li>Cinematic Teaser (3 Min) + Full Video</li>
+                        <li>Drone Coverage Included</li>
+                        <li>30-Sheet Luxury Karizma Album</li>
+                        <li>All Edited High-Res Photos</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Royal Wedding Combo (₹45,000)')">Select & Book</button>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="price-card" data-category="wedding">
+                <div>
+                    <span class="category-tag">Pre-Wedding</span>
+                    <h3>Cinematic Pre-Wedding</h3>
+                    <div class="price">₹15,000 <span>/ 1 day shoot</span></div>
+                    <ul class="features-list">
+                        <li>1 Full Day Outdoor Shoot</li>
+                        <li>35 Retouched Signature Photos</li>
+                        <li>1 Cinematic Song Video (3-4 Mins)</li>
+                        <li>Save The Date Reels (2 Reels)</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Cinematic Pre-Wedding (₹15,000)')">Select & Book</button>
+            </div>
+
+            <!-- Package 4 -->
+            <div class="price-card" data-category="events">
+                <div>
+                    <span class="category-tag">Birthday / Annaprashan</span>
+                    <h3>Premium Event + Album</h3>
+                    <div class="price">₹14,000 <span>/ event</span></div>
+                    <ul class="features-list">
+                        <li>Candid + Traditional Photography</li>
+                        <li>1 Highlight Reel + Full Event Video</li>
+                        <li>20-Sheet Printed Photo Album</li>
+                        <li>200+ Color Graded Photos</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Premium Event + Album (₹14,000)')">Select & Book</button>
+            </div>
+
+            <!-- Package 5 -->
+            <div class="price-card" data-category="editing">
+                <div>
+                    <span class="category-tag">Post-Production</span>
+                    <h3>Photo & Video Editing</h3>
+                    <div class="price">₹2,500 <span>/ starting</span></div>
+                    <ul class="features-list">
+                        <li>Wedding Highlight / Teaser Editing (₹3,500)</li>
+                        <li>Instagram Reels / YouTube Video (₹800/video)</li>
+                        <li>100 Photos Color Grading & Retouching (₹1,500)</li>
+                        <li>Fast 3-Day Delivery</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Photo & Video Editing (₹2,500+)')">Select & Book</button>
+            </div>
+
+            <!-- Package 6 -->
+            <div class="price-card" data-category="editing">
+                <div>
+                    <span class="category-tag">Album Work</span>
+                    <h3>Album Design & Print</h3>
+                    <div class="price">₹4,500 <span>/ 25 sheets</span></div>
+                    <ul class="features-list">
+                        <li>Custom Creative Sheet Design (₹100/sheet)</li>
+                        <li>HD Matte / Glossy / Velvet Print</li>
+                        <li>Acrylic / Leather Cover Pad</li>
+                        <li>Complimentary E-Album Link</li>
+                    </ul>
+                </div>
+                <button class="btn" onclick="selectPackage('Album Design & Print (₹4,500+)')">Select & Book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Booking Section -->
+    <section id="booking" style="background: #161616;">
+        <div class="section-title">
+            <h2>Book Your Date / Service</h2>
+            <p>Form bharein aur seedha WhatsApp par instant booking confirmation paayein</p>
+        </div>
+
+        <div class="booking-container">
+            <form id="bookingForm" onsubmit="sendToWhatsApp(event)">
+                <div class="form-group">
+                    <label>Customer Name (Aapka Naam) *</label>
+                    <input type="text" id="custName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile / WhatsApp Number *</label>
+                    <input type="tel" id="custPhone" required placeholder="e.g. 9876543210">
+                </div>
+
+                <div class="form-group">
+                    <label>Select Service / Package *</label>
+                    <select id="packageSelect" required>
+                        <option value="">-- Choose a Package or Service --</option>
+                        <option value="Basic Event Package (₹8,500)">Basic Event Package - Birthday/Annaprashan (₹8,500)</option>
+                        <option value="Premium Event + Album (₹14,000)">Premium Event + Album - Birthday/Annaprashan (₹14,000)</option>
+                        <option value="Cinematic Pre-Wedding (₹15,000)">Cinematic Pre-Wedding (₹15,000)</option>
+                        <option value="Royal Wedding Combo (₹45,000)">Royal Wedding Combo (₹45,000)</option>
+                        <option value="Photo & Video Editing (₹2,500+)">Photo & Video Editing Only (₹2,500+)</option>
+                        <option value="Album Design & Print (₹4,500+)">Album Design & Print Only (₹4,500+)</option>
+                        <option value="Custom Requirement">Custom Package (Discuss on Call)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Event / Delivery Date *</label>
+                    <input type="date" id="eventDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Event Location / Extra Details</label>
+                    <textarea id="eventNotes" rows="3" placeholder="Venue address, number of days, or editing details..."></textarea>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; font-size: 1.05rem;">Confirm Booking via WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 ROYAL LENS Photography & Films. All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Wedding • Pre-Wedding • Birthday • Annaprashan • Video Editing • Album Design</p>
+    </footer>
+
+    <script>
+        // APNA WHATSAPP NUMBER YAHAN DALEIN (91 ke saath, bina + lagaye)
+        const MY_WHATSAPP_NUMBER = "918116264220"; 
+
+        // Gallery Filter
+        function filterGallery(category, btnElement) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = btnElement.parentElement.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-gcat') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Lightbox Preview
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            document.getElementById('lightboxImg').src = imgSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+
+        // Package Filter
+        function filterPackages(category, btnElement) {
+            const cards = document.querySelectorAll('.price-card');
+            const buttons = btnElement.parentElement.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Auto-select package
+        function selectPackage(packageName) {
+            const selectBox = document.getElementById('packageSelect');
+            selectBox.value = packageName;
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Send Booking Details to WhatsApp
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const pkg = document.getElementById('packageSelect').value;
+            const date = document.getElementById('eventDate').value;
+            const notes = document.getElementById('eventNotes').value || "None";
+
+            const message = `*NEW PHOTOGRAPHY BOOKING INQUIRY*%0A` +
+                            `----------------------------------%0A` +
+                            `*Name:* ${name}%0A` +
+                            `*Phone:* ${phone}%0A` +
+                            `*Package:* ${pkg}%0A` +
+                            `*Date:* ${date}%0A` +
+                            `*Details:* ${notes}`;
+
+            const whatsappURL = `https://wa.me/${MY_WHATSAPP_NUMBER}?text=${message}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+</body>
+</html>
